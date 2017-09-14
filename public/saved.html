@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Mongo Scraper - Open Source: Gaming Articles</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" src="app.js"></script>
+</head>
+<body>
+  <nav class="white" role="navigation">
+    <div class="nav-wrapper container">
+      <a id="logo-container" href="#" class="brand-logo">Mongo.Scraper</a>
+      
+
+      <ul class="right hide-on-med-and-down">
+        <li><a href="/">Home</a></li>
+        <li><a href="/saved.html">Saved Articles</a></li>
+      </ul>
+
+
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="/">Home</a></li>
+        <li><a href="/saved.html">Saved Articles</a></li>
+      </ul>
+
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+
+
+  <div id="index-banner" class="parallax-container">
+    <div class="section no-pad-bot">
+      <div class="container">
+        <br><br>
+        <h1 class="header center teal-text text-lighten-2">Mongo Scraper</h1>
+        
+        
+        <br><br>
+
+      </div>
+    </div>
+    <div class="parallax"><img src="images/background.jpg" alt="Main Background Image"></div>
+  </div>
+
+
+
+
+<!--Display "saved" articles here - after trigger from app.js-->
+  <div class="container">
+    <div class="section">
+
+      <div class="row" id="savedArticles">
+
+      </div>
+
+    </div>
+  </div>
+
+
+
+
+<!-- Modal Trigger from app.js file.  Looks like this: <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Comment</a> -->
+  <div id="modal1" class="modal">
+    <div id="comment_id" class="modal-content">
+
+      <h5>Comments</h5>
+
+      <div class="row modal-row">
+        <div id="modal-comments"></div>
+          <form class="col s12">
+            <div class="row">
+              <div class="input-field col s10">
+                <textarea id="modal-textbox" type="text" class="materialize-textarea"></textarea>
+                <label for="modal-textbox">Enter Comment</label>
+              </div>
+            </div>
+            <button class="btn waves-effect waves-light" id="submitComment" type="submit" name="action">Submit
+              <i class="material-icons right">send</i>
+            </button>
+          </form>
+  
+        <!-- front / back / both sides of card appear here -->
+      </div>
+
+   </div> <!-- end modal content -->
+  </div> <!-- end modal1 -->
+
+
+
+
+
+
+  
+  <div class="parallax-container valign-wrapper">
+    <div class="section no-pad-bot">
+      <div class="container">
+        <div class="row center">
+          
+    <footer>
+      <div class="footer-copyright">
+        <div class="container">
+        <h5>Made by <a class="brown-text text-lighten-3" target="_blank" href="http://davidlaidlaw.com">David Laidlaw</a></h5>
+        </div>
+      </div>
+    </footer>
+
+        </div>
+      </div>
+    </div>
+    <div class="parallax"><img src="images/background.jpg" alt="Main Background Image"></div>
+  </div>
+
+
+  <!--  Scripts-->
+
+  <script>
+  
+    $(document).on("click", ".modal-trigger", function() {
+      $('.modal').modal();
+
+      $("#modal1").modal('open');
+
+      // var setId = $(this).attr("id");
+
+      // $.ajax({
+      //   method: "GET",
+      //   url: "/api/" + setId
+      // }).done(function(data) {
+        
+      //     $("#modal1").modal('open');
+          
+
+
+      //   });
+
+    });
+
+
+  </script>
+  
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
+
+  </body>
+</html>
