@@ -1,5 +1,5 @@
 {
-  "name": "open_source_articles",
+  "name": "open-source-articles",
   "version": "1.0.0",
   "description": "Gaming articles scraped from OpenSource.com",
   "main": "server.js",
