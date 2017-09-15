@@ -265,22 +265,22 @@ app.get("/markunsaved/:id", function(req, res) {
 });
 
 
-// // Handle form submission, save submission to mongo
-// app.post("/submit", function(req, res) {
-//   console.log(req.body);
-//   // Insert the note into the notes collection
-//   Comment.insert(req.body, function(error, saved) {
-//     // Log any errors
-//     if (error) {
-//       console.log(error);
-//     }
-//     // Otherwise, send the note back to the browser
-//     // This will fire off the success function of the ajax request
-//     else {
-//       res.send(saved);
-//     }
-//   });
-// });
+// Handle form submission, save submission to mongo
+app.post("/submit", function(req, res) {
+  console.log(req.body);
+  // Insert the note into the notes collection
+  Comment.insert(req.body, function(error, saved) {
+    // Log any errors
+    if (error) {
+      console.log(error);
+    }
+    // Otherwise, send the note back to the browser
+    // This will fire off the success function of the ajax request
+    else {
+      res.send(saved);
+    }
+  });
+});
 
 
 

@@ -1,7 +1,7 @@
 // When you click the savenote button
 
 // $(document).on("click", "#scrapeBtn", function() {
-// 		window.setTimeout(function(){ window.location = "/index.html"; },3000);
+//    window.setTimeout(function(){ window.location = "/index.html"; },3000);
 // });
 
 
@@ -10,12 +10,12 @@ $.getJSON("/articles", function(data) {
   for (var i = 0; i < data.length; i++) {
     // Display the apropos information on the page
     $("#articleRow").append(
-		'<div class="card-panel teal col s12 m12"><div class="col s12 m4"><a class="link" target="_blank" href="' + data[i].link + '"><img src="' + data[i].image + '" align="left" width="100%" margin="auto 0"></a></div>' +
-		'<div class="col s12 m8"><span class="white-text" text-align="left"><a class="link" target="_blank" href="' + data[i].link + '"><h5 color="white">' + data[i].title + '</h5></a>' +
-		'<p>' + data[i].summary + '</p></span></div>' +
-		'<div class="col s12 m12"><div class="col s12 m4"><span class="white-text" text-align="left"><p>' + data[i].byline + '</p></span></div>' +
-		'<div class="col s12 m8 left"><a class="waves-effect waves-light btn-large save" data-id="' + data[i]._id + '" width="100%"><i class="material-icons right">cloud</i>Save Article</a></div>' + 
-		'</div></div>'
+    '<div class="card-panel teal col s12 m12"><div class="col s12 m4"><a class="link" target="_blank" href="' + data[i].link + '"><img src="' + data[i].image + '" align="left" width="100%" margin="auto 0"></a></div>' +
+    '<div class="col s12 m8"><span class="white-text" text-align="left"><a class="link" target="_blank" href="' + data[i].link + '"><h5 color="white">' + data[i].title + '</h5></a>' +
+    '<p>' + data[i].summary + '</p></span></div>' +
+    '<div class="col s12 m12"><div class="col s12 m4"><span class="white-text" text-align="left"><p>' + data[i].byline + '</p></span></div>' +
+    '<div class="col s12 m8 left"><a class="waves-effect waves-light btn-large save" data-id="' + data[i]._id + '" width="100%"><i class="material-icons right">cloud</i>Save Article</a></div>' + 
+    '</div></div>'
 
 
     );
@@ -32,16 +32,17 @@ $.getJSON("/saved", function(data) {
   // For each one
   for (var i = 0; i < data.length; i++) {
 
-  	var comment_id = data[i]._id;
+    // var comment_id = data[i]._id;
+
     // Display the apropos information on the page
     $("#savedArticles").append(
-		'<div class="card-panel teal col s12 m12"><div class="col s12 m4"><a class="link" target="_blank" href="' + data[i].link + '"><img src="' + data[i].image + '" align="left" width="100%" margin="auto 0"></a></div>' +
-		'<div class="col s12 m8"><span class="white-text" text-align="left"><a class="link" target="_blank" href="' + data[i].link + '"><h5 color="white">' + data[i].title + '</h5></a>' +
-		'<p>' + data[i].summary + '</p></span></div>' +
-		'<div class="col s12 m12"><div class="col s12 m4"><span class="white-text" text-align="left"><p>' + data[i].byline + '</p></span></div>' +
-		'<div class="col s12 m4 left"><a class="waves-effect waves-light btn-large delete" data-id="' + comment_id + '" width="100%">Remove from Saved</a></div>' + 
-		'<div class="col s12 m4 left"><a class="waves-effect waves-light btn-large modal-trigger" data-target="' + comment_id + '" width="100%">Comments</a></div>' +
-		'</div></div>'
+    '<div class="card-panel teal col s12 m12"><div class="col s12 m4"><a class="link" target="_blank" href="' + data[i].link + '"><img src="' + data[i].image + '" align="left" width="100%" margin="auto 0"></a></div>' +
+    '<div class="col s12 m8"><span class="white-text" text-align="left"><a class="link" target="_blank" href="' + data[i].link + '"><h5 color="white">' + data[i].title + '</h5></a>' +
+    '<p>' + data[i].summary + '</p></span></div>' +
+    '<div class="col s12 m12"><div class="col s12 m4"><span class="white-text" text-align="left"><p>' + data[i].byline + '</p></span></div>' +
+    '<div class="col s12 m4 left"><a class="waves-effect waves-light btn-large delete" data-id="' + data[i]._id + '" width="100%">Remove from Saved</a></div>' + 
+    '<div class="col s12 m4 left"><a class="waves-effect waves-light btn-large modal-trigger" data-id="' + data[i]._id + '" id="' + data[i]._id + '" data-target="#' + data[i]._id + '" href="#' + data[i]._id + '" width="100%">Comments</a></div>' +
+    '</div></div>'
 
 
     );
@@ -62,7 +63,7 @@ $(document).on("click", ".waves-effect.waves-light.btn-large.save", function() {
     url: "/marksaved/" + thisId
   });
   $(this).parents("tr").remove();
-  getSaved();
+  // getSaved();
 });
 
 // Click event to mark an article as "unsaved"
@@ -73,7 +74,7 @@ $(document).on("click", ".waves-effect.waves-light.btn-large.delete", function()
     url: "/markunsaved/" + thisId
   });
   $(this).parents("tr").remove();
-  getUnsaved();
+  // getUnsaved();
 });
 
 
@@ -103,7 +104,7 @@ getResults();
 
 // When the #submitComment button is clicked
 $(document).on("click", "#submitComment", function() {
-	var thisId = $(this).attr("data-id");
+  var thisId = $(this).attr("data-id");
   // AJAX POST call to the submit route on the server
   // This will take the data from the form and send it to the server
   $.ajax({
@@ -116,11 +117,13 @@ $(document).on("click", "#submitComment", function() {
   })
   // If that API call succeeds, add the title and a delete button for the note to the page
   .done(function(data) {
+    for (var i = 0; i < data.length; i++) {
     // Add the title and delete button to the #results section
-    $("#modal-comments").prepend("<p class='dataentry' data-id=" + data[i]._id + "><span class='dataTitle' data-id=" +
-        data[i]._id + "></span><span class=deleter>X</span></p>");
-    // Clear the note and title inputs on the page
-    $("#modal-textbox").empty();
+      $("#modal-comments").prepend("<p class='dataentry' data-id=" + data[i]._id + "><span class='dataTitle' data-id=" +
+          data[i]._id + "></span><span class=deleter>X</span></p>");
+      // Clear the note and title inputs on the page
+      $("#modal-textbox").empty();
+    }
   }
   );
 });
@@ -153,44 +156,8 @@ $(document).on("click", ".deleter", function() {
 
 
 
-
-
-
-
-// // Load unsaved articles and render them to the screen
-// function getUnsaved() {
-//   $("#savedArticles").empty();
-//   $.getJSON("/unsaved", function(data) {
-//     for (var i = 0; i < data.length; i++) {
-//       $("#unsaved").prepend("<tr><td>" + data[i].title + "</td><td>" + data[i].author +
-//         "</td><td><button class='marksaved' data-id='" + data[i]._id + "'>Mark Saved</button></td></tr>");
-//     }
-//     $("#unsaved").prepend("<tr><th>Title</th><th>Author</th><th>Saved/Unsaved</th></tr>");
-//   });
-// }
-
-// // Load saved articles and render them to the screen
-// function getSaved() {
-//   $("#articleRow").empty();
-//   $.getJSON("/saved", function(data) {
-//     for (var i = 0; i < data.length; i++) {
-//       $("#saved").prepend("<tr><td>" + data[i].title + "</td><td>" + data[i].author +
-//         "</td><td><button class='markunsaved' data-id='" + data[i]._id + "'>Mark Unsaved</button></td></tr>");
-//     }
-//     $("#saved").prepend("<tr><th>Title</th><th>Author</th><th>Saved/Unsaved</th></tr>");
-//   });
-// }
-
-// // Calling our functions
-// getUnsaved();
-// getSaved();
-
-
-
-
-
 $(document).on("click", "#scrapeBtn", function() {
-		window.setTimeout(function(){ window.location = "/"; },3000);
+    window.setTimeout(function(){ window.location = "/"; },3000);
 });
 
 

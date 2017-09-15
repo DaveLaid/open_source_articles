@@ -54,10 +54,9 @@
 <!--Display "saved" articles here - after trigger from app.js-->
   <div class="container">
     <div class="section">
+    <!-- Modal Trigger from app.js file.  Looks like this: <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Comment</a> -->
 
-      <div class="row" id="savedArticles">
-
-      </div>
+      <div class="row" id="savedArticles"></div>
 
     </div>
   </div>
@@ -67,12 +66,12 @@
 
 <!-- Modal Trigger from app.js file.  Looks like this: <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Comment</a> -->
   <div id="modal1" class="modal">
-    <div id="comment_id" class="modal-content">
+    <div class="modal-content">
 
       <h5>Comments</h5>
 
-      <div class="row modal-row">
-        <div id="modal-comments"></div>
+      <div class="row modal-row comments-card">
+        <div id="modal-comments">DATA ID SOMEWHERE HERE.  LOOP THROUGH MODAL</div>
           <form class="col s12">
             <div class="row">
               <div class="input-field col s10">
@@ -117,35 +116,49 @@
   </div>
 
 
-  <!--  Scripts-->
 
-  <script>
+
+<!--  Scripts-->
+<script>
   
-    $(document).on("click", ".modal-trigger", function() {
-      $('.modal').modal();
 
+$(document).on("click", ".modal-trigger", function() {
+
+  $('.modal').modal();
+
+  var setId = $(this).attr("id");
+
+  $.ajax({
+    method: "GET",
+    url: "/find/" + setId
+  }).done(function(data) {
+    console.log("DATA AFTER GET: ");
+    console.log(data);
       $("#modal1").modal('open');
+      // var allCards = {flashMe: data};
+      console.log("WHAT'S UP!");
+      // console.log(data);
 
-      // var setId = $(this).attr("id");
+      // var i = 0;
 
-      // $.ajax({
-      //   method: "GET",
-      //   url: "/api/" + setId
-      // }).done(function(data) {
-        
-      //     $("#modal1").modal('open');
-          
+      $("#modal-comments").html("<p>" + data + "</p>");
 
+      // $("#modal-question").html("<h2 style='text-align:center; color: #08bff7' >" + data.Flashcards[i].question + "</h2>");
+      
 
-      //   });
 
     });
 
-
-  </script>
+    
   
-  <script src="js/materialize.js"></script>
-  <script src="js/init.js"></script>
 
-  </body>
+});
+
+
+</script>
+  
+<script src="js/materialize.js"></script>
+<script src="js/init.js"></script>
+
+</body>
 </html>
