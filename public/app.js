@@ -14,7 +14,7 @@ $.getJSON("/articles", function(data) {
     '<div class="col s12 m8"><span class="white-text" text-align="left"><a class="link" target="_blank" href="' + data[i].link + '"><h5 color="white">' + data[i].title + '</h5></a>' +
     '<p>' + data[i].summary + '</p></span></div>' +
     '<div class="col s12 m12"><div class="col s12 m4"><span class="white-text" text-align="left"><p>' + data[i].byline + '</p></span></div>' +
-    '<div class="col s12 m8 left"><a class="waves-effect waves-light btn-large save" data-id="' + data[i]._id + '" width="100%"><i class="material-icons right">cloud</i>Save Article</a></div>' + 
+    '<div class="col s12 m8 left"><a href="/" class="waves-effect waves-light btn-large save" data-id="' + data[i]._id + '" width="100%"><i class="material-icons right">cloud</i>Save Article</a></div>' + 
     '</div></div>'
 
 
@@ -40,7 +40,7 @@ $.getJSON("/saved", function(data) {
     '<div class="col s12 m8"><span class="white-text" text-align="left"><a class="link" target="_blank" href="' + data[i].link + '"><h5 color="white">' + data[i].title + '</h5></a>' +
     '<p>' + data[i].summary + '</p></span></div>' +
     '<div class="col s12 m12"><div class="col s12 m4"><span class="white-text" text-align="left"><p>' + data[i].byline + '</p></span></div>' +
-    '<div class="col s12 m4 left"><a class="waves-effect waves-light btn-large delete" data-id="' + data[i]._id + '" width="100%">Remove from Saved</a></div>' + 
+    '<div class="col s12 m4 left"><a href="/saved.html" class="waves-effect waves-light btn-large delete" data-id="' + data[i]._id + '" width="100%">Remove from Saved</a></div>' + 
     '<div class="col s12 m4 left"><a class="waves-effect waves-light btn-large modal-trigger" data-id="' + data[i]._id + '" id="' + data[i]._id + '" data-target="#' + data[i]._id + '" href="#' + data[i]._id + '" width="100%">Comments</a></div>' +
     '</div></div>'
 
